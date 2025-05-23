@@ -5,8 +5,8 @@ export const links = [
 ]
 
 export const site = {
-  name: "AstroMatt",
-  url: 'https://astromatt.com',
+  name: "astromatt",
+  url: 'https://astromatt.netlify.app',
 }
 
 export const collections = {}
