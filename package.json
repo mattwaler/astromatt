@@ -10,6 +10,7 @@
     "format": "prettier ./src/**/*.{astro,css,js,json,ts} --write"
   },
   "dependencies": {
+    "@alpinejs/collapse": "^3.14.9",
     "@astrojs/alpinejs": "^0.4.8",
     "@astrojs/sitemap": "^3.4.0",
     "@tailwindcss/vite": "^4.1.6",

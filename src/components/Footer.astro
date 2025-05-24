@@ -17,8 +17,7 @@ const pathname = new URL(Astro.request.url).pathname
           <a
             href={link.href}
             class:list={[
-              `text-gray-500 font-medium transition-colors hover:text-kc-purple-deep ${link.class}`,
-              { 'text-kc-purple-deep': pathname.includes(link.href) },
+              `font-medium transition-colors ${link.class}`,
             ]}
           >
             {link.name}
@@ -26,12 +25,12 @@ const pathname = new URL(Astro.request.url).pathname
         ))
       }
     </nav>
-    <p class="mt-8 text-center text-sm/6 text-gray-600">
+    <p class="mt-8 text-center text-sm/6">
       &copy; <span x-data x-text="new Date().getFullYear()">2025</span> {site.name}, Inc. All rights reserved.
       <a class="ml-1 underline" href="/sitemap-index.xml">Sitemap</a>
     </p>
     <div class="mt-8 flex justify-center gap-x-10">
-      <a href="#" class="text-gray-600 hover:text-gray-800">
+      <a href="#">
         <span class="sr-only">Facebook</span>
         <svg
           class="size-6"
@@ -45,7 +44,7 @@ const pathname = new URL(Astro.request.url).pathname
             clip-rule="evenodd"></path>
         </svg>
       </a>
-      <a href="#" class="text-gray-600 hover:text-gray-800">
+      <a href="#">
         <span class="sr-only">Instagram</span>
         <svg
           class="size-6"
@@ -59,7 +58,7 @@ const pathname = new URL(Astro.request.url).pathname
             clip-rule="evenodd"></path>
         </svg>
       </a>
-      <a href="/" class="text-gray-600 hover:text-gray-800">
+      <a href="/">
         <span class="sr-only">X</span>
         <svg
           class="size-6"

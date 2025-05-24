@@ -2,6 +2,8 @@
 import { links, site } from '@/content.config'
 import { Image } from 'astro:assets'
 import logo from '@/assets/logo.svg'
+import Menu from '@/assets/menu.svg'
+import Close from '@/assets/close.svg'
 
 const pathname = new URL(Astro.request.url).pathname
 ---
@@ -24,35 +26,19 @@ const pathname = new URL(Astro.request.url).pathname
             format="webp"
           />
         </a>
-        <button type="button" class="rounded-md text-gray-700 lg:hidden">
-          <span class="sr-only">Open main menu</span>
-          <svg
-            class="size-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
-            @click="isOpen = true"
-          >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5"></path>
-          </svg>
+        <button x-cloak @click="isOpen = !isOpen" type="button" class="rounded-md lg:hidden">
+          <Menu x-show="!isOpen" />
+          <Close x-show="isOpen" />
         </button>
         <div
-          class="hidden lg:ml-12 lg:flex items-center lg:gap-x-14 text-gray-500"
+          class="hidden lg:ml-12 lg:flex items-center lg:gap-x-14"
         >
           {
             links.map((link) => (
               <a
                 href={link.href}
                 class:list={[
-                  'text-sm/6 font-semibold hover:text-gray-950 transition-colors',
-                  { 'text-gray-950': pathname.includes(link.href) },
-                  link.class
+                  'text-sm/6 font-semibold transition-colors',
                 ]}
               >
                 {link.name}
@@ -63,72 +49,21 @@ const pathname = new URL(Astro.request.url).pathname
       </nav>
     </div>
   </div>
-  <div
-    class="lg:hidden"
-    role="dialog"
-    aria-modal="true"
-    x-show="isOpen"
-    x-cloak
-  >
-    <div class="fixed inset-0 z-50 bg-black/50" x-show="isOpen"></div>
-    <div
-      class="fixed inset-y-0 right-0 z-50 w-full overflow-y-auto bg-white container sm:max-w-sm sm:ring-1 sm:ring-gray-900/10"
-    >
-      <div class="flex h-20 items-center justify-between">
-        <a href="/" class="">
-          <span class="sr-only">{site.name}</span>
-          <Image
-            src={logo}
-            class="h-12 w-auto"
-            height={200}
-            width={160}
-            alt=""
-            format="webp"
-          />
-        </a>
-        <button
-          type="button"
-          class="rounded-md text-gray-700"
-          @click="isOpen = false"
-        >
-          <span class="sr-only">Close menu</span>
-          <svg
-            class="size-7"
-            fill="none"
-            viewBox="0 0 24 24"
-            stroke-width="1.5"
-            stroke="currentColor"
-            aria-hidden="true"
-            data-slot="icon"
+  <div x-collapse x-cloak x-show="isOpen" class="container">
+    <div class="pt-2 pb-4  flex flex-col lg:flex-row gap-x-8 gap-y-4 lg:items-center">
+      {
+        links.map((link) => (
+          <a
+            x-on:click="setTimeout(() => isOpen = false, 500)"
+            href={link.href}
+            class:list={[
+              'text-base/6 font-semibold transition-colors',
+            ]}
           >
-            <path
-              stroke-linecap="round"
-              stroke-linejoin="round"
-              d="M6 18 18 6M6 6l12 12"></path>
-          </svg>
-        </button>
-      </div>
-      <div class="mt-2 flow-root">
-        <div class="-my-6 divide-y divide-gray-500/10">
-          <div class="space-y-2 py-6 text-gray-500">
-            {
-              links.map((link) => (
-                <a
-                  x-on:click="setTimeout(() => isOpen = false, 500)"
-                  href={link.href}
-                  class:list={[
-                    '-mx-3 block rounded-lg px-3 py-2 text-base/7 font-semibold transition-colors hover:bg-gray-50 hover:text-gray-950',
-                    { 'text-gray-950': pathname.includes(link.href) },
-                    link.class
-                  ]}
-                >
-                  {link.name}
-                </a>
-              ))
-            }
-          </div>
-        </div>
-      </div>
+            {link.name}
+          </a>
+        ))
+      }
     </div>
   </div>
 </header>
