@@ -1,7 +1,8 @@
 ---
-import { links, site } from '@/content.config'
+import site from '@/site.config'
+import { getCollection } from 'astro:content'
 
-const pathname = new URL(Astro.request.url).pathname
+const nav = await getCollection('nav')
 ---
 
 <footer>
@@ -13,14 +14,14 @@ const pathname = new URL(Astro.request.url).pathname
       aria-label="Footer"
     >
       {
-        links.map((link) => (
+        nav.map((link) => (
           <a
-            href={link.href}
+            href={link.data.slug}
             class:list={[
-              `font-medium transition-colors ${link.class}`,
+              `font-medium transition-colors`,
             ]}
           >
-            {link.name}
+            {link.data.title}
           </a>
         ))
       }

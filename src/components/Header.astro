@@ -1,8 +1,11 @@
 ---
-import { links, site } from '@/content.config'
+import { getCollection } from 'astro:content'
+import site from '@/site.config'
 import Logo from '@/assets/logo.svg'
 import Menu from '@/assets/menu.svg'
 import Close from '@/assets/close.svg'
+
+const nav = await getCollection('nav')
 ---
 
 <header class="lg:absolute inset-x-0 top-0 z-50" x-data="{ isOpen: false }">
@@ -26,14 +29,14 @@ import Close from '@/assets/close.svg'
           class="hidden lg:ml-12 lg:flex items-center lg:gap-x-14"
         >
           {
-            links.map((link) => (
+            nav.map((link) => (
               <a
-                href={link.href}
+                href={link.data.slug}
                 class:list={[
                   'text-sm/6 font-semibold transition-colors',
                 ]}
               >
-                {link.name}
+                {link.data.title}
               </a>
             ))
           }
@@ -44,15 +47,15 @@ import Close from '@/assets/close.svg'
   <div x-collapse x-cloak x-show="isOpen" class="container">
     <div class="pt-2 pb-4  flex flex-col lg:flex-row gap-x-8 gap-y-4 lg:items-center">
       {
-        links.map((link) => (
+        nav.map((link) => (
           <a
             x-on:click="setTimeout(() => isOpen = false, 500)"
-            href={link.href}
+            href={link.data.slug}
             class:list={[
               'text-base/6 font-semibold transition-colors',
             ]}
           >
-            {link.name}
+            {link.data.title}
           </a>
         ))
       }

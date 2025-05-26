@@ -1,12 +1,12 @@
-export const links = [
-  { name: 'About', href: '/' },
-  { name: 'Pricing', href: '/' },
-  { name: 'Contact Us', href: '/' },
-]
+import { defineCollection, z } from 'astro:content';
+import { file } from 'astro/loaders';
 
-export const site = {
-  name: "astromatt",
-  url: 'https://astromatt.netlify.app',
-}
+const nav = defineCollection({
+  loader: file('./src/collections/nav.yaml'),
+  schema: z.object({
+    title: z.string(),
+    slug: z.string(),
+  })
+})
 
-export const collections = {}
+export const collections = { nav }
