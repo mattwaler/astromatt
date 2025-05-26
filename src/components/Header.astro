@@ -1,11 +1,8 @@
 ---
 import { links, site } from '@/content.config'
-import { Image } from 'astro:assets'
-import logo from '@/assets/logo.svg'
+import Logo from '@/assets/logo.svg'
 import Menu from '@/assets/menu.svg'
 import Close from '@/assets/close.svg'
-
-const pathname = new URL(Astro.request.url).pathname
 ---
 
 <header class="lg:absolute inset-x-0 top-0 z-50" x-data="{ isOpen: false }">
@@ -17,13 +14,8 @@ const pathname = new URL(Astro.request.url).pathname
       >
         <a href="/">
           <span class="sr-only">{site.name}</span>
-          <Image
-            src={logo}
-            class="h-12 w-auto"
-            height={200}
-            width={160}
-            alt=""
-            format="webp"
+          <Logo
+            class="w-auto h-12"
           />
         </a>
         <button x-cloak @click="isOpen = !isOpen" type="button" class="rounded-md lg:hidden">

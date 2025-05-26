@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets'
+import BlurImage from './BlurImage.astro'
 import astronaut from '@/assets/astronaut.jpg'
 
-const widths = [640, 768, 1024, 1280, 1536]
+const widths = [480, 768, 1024, 1280]
 const sizes = widths.map(width => `(max-width: ${width}px) ${width}px`).join(', ')
 ---
 
@@ -10,13 +10,12 @@ const sizes = widths.map(width => `(max-width: ${width}px) ${width}px`).join(', 
   <div class="relative">
     <!-- Image -->
     <div class="relative lg:absolute lg:inset-y-0 lg:right-0 lg:w-5/12 xl:w-1/2">
-      <Image
-        format="webp"
+      <BlurImage
         src={astronaut}
         widths={widths}
         sizes={sizes}
         alt=""
-        class="h-64 sm:h-96 object-cover object-center lg:size-full"
+        divClass="h-64 sm:h-96 object-cover object-center lg:size-full"
       />
     </div>
     <!-- Content -->
