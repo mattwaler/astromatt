@@ -1,9 +1,12 @@
 -
+  id: 0
   title: About
-  slug: /about
+  url: /
 -
+  id: 1
   title: Pricing
-  slug: /pricing
+  url: /
 -
+  id: 2
   title: Contact Us
-  slug: /contact-us
+  url: /

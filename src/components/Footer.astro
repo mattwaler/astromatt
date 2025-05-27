@@ -16,9 +16,9 @@ const nav = await getCollection('nav')
       {
         nav.map((link) => (
           <a
-            href={link.data.slug}
+            href={link.data.url}
             class:list={[
-              `font-medium transition-colors`,
+              `font-medium text-gray-400 hover:text-white transition-colors`,
             ]}
           >
             {link.data.title}

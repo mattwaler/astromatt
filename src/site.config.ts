@@ -1,4 +1,4 @@
 export default {
-  name: "astromatt",
+  name: "AstroMatt",
   url: 'https://astromatt.netlify.app',
 }

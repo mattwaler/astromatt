@@ -15,25 +15,25 @@ const nav = await getCollection('nav')
         class="h-20 flex items-center justify-between lg:justify-start"
         aria-label="Global"
       >
-        <a href="/">
-          <span class="sr-only">{site.name}</span>
+        <a href="/" class="flex items-center gap-1">
           <Logo
             class="w-auto h-12"
           />
+          <span class="font-black text-xl">{site.name}</span>
         </a>
         <button x-cloak @click="isOpen = !isOpen" type="button" class="rounded-md lg:hidden">
           <Menu x-show="!isOpen" />
           <Close x-show="isOpen" />
         </button>
         <div
-          class="hidden lg:ml-12 lg:flex items-center lg:gap-x-14"
+          class="hidden lg:ml-16 lg:flex items-center lg:gap-x-12"
         >
           {
             nav.map((link) => (
               <a
-                href={link.data.slug}
+                href={link.data.url}
                 class:list={[
-                  'text-sm/6 font-semibold transition-colors',
+                  'text-sm/6 font-semibold text-gray-400 hover:text-white transition-colors',
                 ]}
               >
                 {link.data.title}
@@ -50,9 +50,9 @@ const nav = await getCollection('nav')
         nav.map((link) => (
           <a
             x-on:click="setTimeout(() => isOpen = false, 500)"
-            href={link.data.slug}
+            href={link.data.url}
             class:list={[
-              'text-base/6 font-semibold transition-colors',
+              'text-sm/6 text-gray-400 hover:text-white font-semibold transition-colors',
             ]}
           >
             {link.data.title}
